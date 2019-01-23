@@ -339,9 +339,9 @@ class DatabaseWrapper(BaseDatabaseWrapper):
                 if dn is not None:
                     yield dn, attrs
 
-            page_control = page_controls[0]
+            page_control = page_controls[0] if page_controls else None
             page += 1
-            if page_control.cookie:
+            if page_control and page_control.cookie:
                 ldap_control.cookie = page_control.cookie
             else:
                 # End of pages
